@@ -28,7 +28,9 @@ while rscode!=1:
 	nomor = input("masukkan nomor telepon : ")
 	###password="typolah86"
 	password = input("masukkan password : ")
-	response=requests.post('https://id-api.spooncast.net/signin/?version=2',headers=headers,json={"sns_type":"phone","sns_id":nomor,"password":password})
+	
+headers = {'user-agent':'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)'}
+response=requests.post('https://id-api.spooncast.net/signin/?version=2',headers=headers,json={"sns_type":"phone","sns_id":nomor,"password":password})
 	#print(response.json())
 	rscode = response.json()['results'][0]['result_code']
 	if rscode !=1:
@@ -45,25 +47,21 @@ txtid = input('Link Live Disini Bos ku😘 : ')
 response = requests.get(txtid)
 urlo = response.url
 slink = urlo[34:-59]
-socketstring = ("wss://id-heimdallr.spooncast.net/" + slink)
+###socketstring = ("wss://id-heimdallr.spooncast.net/" + slink)
 
 API_BASE_URL = "https://id-api.spooncast.net/lives/"
 API_CMD = "/join/"
 
 
 print('ID LIVE : ' +slink)
-UAInput = open('UALIST.txt','r').read().splitlines()
-DBTEST = (botauthtokenl)
+
+DBTEST = botauthtokenl
 
 user_token_list = DBTEST
 for i in range(0, 1):
-		with open(DBTEST) as f:
-			lst = f.read().splitlines()
+		
 			paramex = {'cv':'heimdallr'}
-			headers = {'Authorization': 'Token ' + str(lst[i]),
-			'accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-			'content-type':'application/json',
-			'user-agent':str(UAInput[i])}
+			
 			with requests.Session() as c:
 				r = c.post(API_BASE_URL + slink + API_CMD, headers = headers,params=paramex)
 				r2 = c.post(API_BASE_URL + slink + '/like/', headers = headers,params=paramex)
