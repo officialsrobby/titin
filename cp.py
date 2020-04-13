@@ -40,7 +40,7 @@ tirublock=response.json()['results'][0]['tag']
 #time.sleep(100)
 tokenl=response.json()['results'][0]['token']
 print(response.json()['results'][0]['nickname'])
-Print(tokenl)
+print(tokenl)
 botauthtoken2=tokenl
 
 txtid = input('Link Live Disini Bos ku😘 : ')
