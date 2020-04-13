@@ -20,7 +20,6 @@ judull = 'xwx'
 timehl2 = datetime.today()
 
 
-botauthtoken2 = '510b152118e524377ef293c3576d26511c2bddbb' #token lu disini
 
 rscode=0
 while rscode!=1:
@@ -29,7 +28,6 @@ while rscode!=1:
 	nomor = input("masukkan nomor telepon : ")
 	###password="typolah86"
 	password = input("masukkan password : ")
-	headers={"User-Agent":"Mozilla/5.0"}
 	response=requests.post('https://id-api.spooncast.net/signin/?version=2',headers=headers,json={"sns_type":"phone","sns_id":nomor,"password":password})
 	#print(response.json())
 	rscode = response.json()['results'][0]['result_code']
@@ -48,8 +46,29 @@ response = requests.get(txtid)
 urlo = response.url
 slink = urlo[34:-59]
 socketstring = ("wss://id-heimdallr.spooncast.net/" + slink)
-print(socketstring)
 
+API_BASE_URL = "https://id-api.spooncast.net/lives/"
+API_CMD = "/join/"
+
+
+print('ID LIVE : ' +slink)
+UAInput = open('UALIST.txt','r').read().splitlines()
+DBTEST = (botauthtokenl)
+
+user_token_list = DBTEST
+for i in range(0, 1):
+		with open(DBTEST) as f:
+			lst = f.read().splitlines()
+			paramex = {'cv':'heimdallr'}
+			headers = {'Authorization': 'Token ' + str(lst[i]),
+			'accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+			'content-type':'application/json',
+			'user-agent':str(UAInput[i])}
+			with requests.Session() as c:
+				r = c.post(API_BASE_URL + slink + API_CMD, headers = headers,params=paramex)
+				r2 = c.post(API_BASE_URL + slink + '/like/', headers = headers,params=paramex)
+				
+			
 mypesan = '{"live_id":'+slink+',"token":"'+botauthtoken2+'","event":"live_join","appversion":"4.3.16","useragent":"Android"}'###### end 
 
 
@@ -105,7 +124,7 @@ def on_message(ws, message):
         promot = '{"appversion":"4.3.16","event":"live_message","token":"","useragent":"Android","message":" hai 👋 ' + nick + ' salam kenal yah dari MJ COISH nya 7TO7 RADIO"}'
         ig = '{"appversion":"4.3.16","event":"live_message","token":"","useragent":"Android","message":"Hai ' + nick + ' Malam Juga Kamu, Jangan bergadang kak !! 😊"}'
         makasih = '{"appversion":"4.3.16","event":"live_message","token":"","useragent":"Android","message":"' + nick + ' iya sore lah😒 kata siapa malam🙈 "}'
-        jawab = '{"appversion":"4.3.16","event":"live_message","token":"","useragent":"Android","message":" {info}={leader} untuk   ' + nick + ' (nice = [K.O.P.I]Šｴ♤ᴛɪᴛɪɴᴷˢᵀ) "}'
+        jawab = '{"appversion":"4.3.16","event":"live_message","token":"","useragent":"Android","message":" {info}={leader} untuk   ' + nick + ' (Dev = Robby) "}'
         rank = '{"appversion":"4.3.16","event":"live_message","token":" ","useragent":"Android","message":"  [INFO=RANK] untuk ' + nick + ' ON PROSES ~ cek rank 1/30 connected "}'
         if evn == 'live_message' and (psn == '=status' or psn == '=durasi' or psn == '=info'):
         	headers2 = {'User-Agent': 'Mozilla/5.0'}
@@ -129,10 +148,10 @@ def on_message(ws, message):
                 ws.send(lsjoin)
         if evn == 'live_like' and status == 'bangun':
                 ws.send(llike)
-        if evn == 'live_message' and psn == 'kiki diam ' and status == 'bangun':
+        if evn == 'live_message' and psn == 'fvb diam' and status == 'bangun':
            status = 'tidur'
            ws.send(tidur)
-        if evn == 'live_message' and psn == 'info = rank':
+        if evn == 'live_message' and psn == '$rank':
             headers3 = {'User-Agent': 'Mozilla/5.0'}
             response3 = requests.get('https://id-api.spooncast.net/lives/popular/', headers=headers3)
             ws.send(rank)
@@ -170,7 +189,7 @@ def on_message(ws, message):
             formatss = '%H:%M:%S'
             timeh = datetime.strptime(s2, formatss) - datetime.strptime(s1, formatss)
             ws.send('{"appversion":"4.3.16","event":"live_message","token":" ","useragent":"Android","message":"Info rank ' + str(xz + 1) + '  nama: ' + nama + ' judul: ' + judul + '  durasi -> ' + str(timeh) + ' "}')
-        if evn == 'live_message' and psn == 'info = akun saya':
+        if evn == 'live_message' and psn == 'fvb saya':
             print('sjqjajsajajhshsajsjjsjwjwa')
             cid = tag
             headers4 = {'User-Agent': 'Mozilla/5.0'}
