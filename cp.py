@@ -20,14 +20,14 @@ judull = 'xwx'
 timehl2 = datetime.today()
 
 
-botauthtoken2 = 'f2403d5c8c8a51ad7dba69e1c75f72e75349d5aa' #token lu disini
+botauthtoken2 = '510b152118e524377ef293c3576d26511c2bddbb' #token lu disini
 
 rscode=0
 while rscode!=1:
 	#nomor = "06802143801"
-	nomor="081310972323"
+	nomor="082330109093"
 	###nomor = input("masukkan nomor telepon : ")
-	password="rahasia123@"
+	password="typolah86"
 	###password = input("masukkan password : ")
 	headers={"User-Agent":"Mozilla/5.0"}
 	response=requests.post('https://id-api.spooncast.net/signin/?version=2',headers=headers,json={"sns_type":"phone","sns_id":nomor,"password":password})
