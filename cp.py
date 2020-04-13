@@ -3,7 +3,7 @@ from datetime import datetime
 
 import time, requests, random
 sandi = input('Masukan password : ')
-if sandi == 'firman12':
+if sandi == 'robrob':
 	print('Welcome Bosku\nUdah Makan Belum?')
 else:
     ws.close()
