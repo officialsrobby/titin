@@ -28,7 +28,7 @@ while rscode!=1:
 	###password="rahasia123@"
 	password = input("masukkan password : ")
 	headers={"User-Agent":"Mozilla/5.0"}
-	response=requests.post('https://id-api.spooncast.net/signin/?version=2',headers=headers,json={"sns_type":"phone","sns_id":nomor,"password":password})
+	response=requests.post('https://id-api.spooncast.net/signin/?version=3',headers=headers,json={"sns_type":"phone","sns_id":nomor,"password":password})
 	#print(response.json())
 	rscode = response.json()['results'][0]['result_code']
 	if rscode !=1:
